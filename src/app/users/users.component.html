@@ -1,0 +1,161 @@
+<h1 class = "hc">Registration Form</h1>
+
+<div class="container">
+
+    <form [formGroup]="registrationForm" novalidate (ngSubmit)="registerNewUser()">
+
+        <input type="hidden" name="user.uid" />
+        <div class="row">
+            <div class="col-25">
+                <label for="firstname">Enter First Name:</label>
+            </div>
+            <div class="col-75">
+                <input type="text" [(ngModel)]="user.firstname" required formControlName="firstname"
+                    [ngClass]="{'is-invalid': submitted && fval.firstname.errors }" /><br />
+                <div *ngIf="submitted && fval.firstname.errors" class="invalid-feedback">
+                    <div *ngIf="fval.firstname.errors.required">
+                        First Name is required.
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="lastname">Enter Last name:</label>
+            </div>
+            <div class="col-75">
+                <input type="text" [(ngModel)]="user.lastname" formControlName="lastname"
+                    [ngClass]="{ 'is-invalid': submitted && fval.lastname.errors }" /><br />
+                <div *ngIf="submitted && fval.lastname.errors" class="invalid-feedback">
+                    <div *ngIf="fval.lastname.errors.required">
+                        Last Name is required.
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-25">
+                <label for="email"> Enter Email: </label>
+            </div>
+            <div class="col-75">
+                <input type="email" [(ngModel)]="user.email" formControlName="email"
+                    [ngClass]="{ 'is-invalid': submitted && fval.email.errors }" /><br />
+                <div *ngIf="submitted && fval.email.errors" class="invalid-feedback">
+                    <div *ngIf="fval.email.errors.required">Email is required</div>
+                    <div *ngIf="fval.email.errors.email">Enter a valid email address</div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="phno"> Enter Phone No: </label>
+            </div>
+            <div class="col-75">
+                <input type="text" [(ngModel)]="user.phno"  maxlength='10' formControlName="phno"
+                    [ngClass]="{ 'is-invalid': submitted && fval.phno.invalid }" required /><br />
+                <div *ngIf="submitted && fval.phno.errors" class="invalid-feedback">
+                    <div *ngIf="fval.phno.errors.required">PhoneNo is required</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="pincode"> Enter PinCode: </label>
+            </div>
+            <div class="col-75">
+                <input type="text" [(ngModel)]="user.pincode" formControlName="pincode" maxlength='6'
+                    [ngClass]="{ 'is-invalid': submitted && fval.pincode.errors}" /><br />
+                <div *ngIf="submitted && fval.pincode.errors" class="invalid-feedback">
+                    <div ngClass="fval.pincode.errors.required">
+                        Pincode is required.
+                    </div>
+                    <div *ngIf="fval.pincode.errors.minlength">Pincode must be at least 6 characters</div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="joiningdate"> Enter Date Of Joining: </label>
+            </div>
+            <div class="col-75">
+                <input type="date" [(ngModel)]="user.joiningdate" formControlName="joiningdate"
+                    [ngClass]="{ 'is-invalid': submitted && fval.joiningdate.errors }" /><br />
+                <div *ngIf="submitted && fval.joiningdate.errors" class="invalid-feedback">
+                    <div *ngIf="fval.joiningdate.errors.required">
+                        Joining Date is required.
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="dob">Enter Date of birth: </label>
+            </div>
+            <div class="col-75">
+                <input type="date" [(ngModel)]="user.dob" formControlName="dob"
+                    [ngClass]="{ 'is-invalid': submitted && fval.dob.errors }" /><br />
+                <div *ngIf="submitted && fval.dob.errors" class="invalid-feedback">
+                    <div *ngIf="fval.dob.errors.required">
+                        Date Of birth is required.
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <input type="hidden" [(ngModel)]="user.status" formControlName="status" />
+
+        <div class="vertical-center">
+            <button type="button" class="hc btn btn-primary">Register New User</button>
+        </div>
+
+    </form>
+
+</div>
+
+
+<div class="container">
+    <div>
+        <input type="text" placeholder="Enter Keyword for filter" [(ngModel)]="searchedKeyword">
+        <button (click)="getSortedDob()">Sort BY DOB</button>
+        <button (click)="getSortedDoj()">Sort BY DOJ</button>
+
+    </div>
+    <table border="1">
+
+        <tr>
+            <th>uid</th>
+            <th>firstname</th>
+            <th>lastname</th>
+            <th>email</th>
+            <th>phno</th>
+            <th>pincode</th>
+            <th>joiningdate</th>
+            <th>dob</th>
+            <th>status</th>
+        </tr>
+
+        <tr *ngFor="let user of users | filter:searchedKeyword ">
+            <td>{{user.uid}}</td>
+            <td>{{user.firstname}}</td>
+            <td>{{user.lastname}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.phno}}</td>
+            <td>{{user.pincode}}</td>
+            <td>{{user.joiningdate}}</td>
+            <td>{{user.dob}}</td>
+            <td>{{user.status}}</td>
+            <td><button (click)="getUserbyid(user.uid)"> Update</button> |<button (click)="deleteUser(user.uid)">
+                    Delete</button></td>
+        </tr>
+    </table>
+</div>
