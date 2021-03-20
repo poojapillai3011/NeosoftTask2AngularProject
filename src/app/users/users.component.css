@@ -46,7 +46,18 @@ label {
     /* text-align: center; */
     margin-left: 513px;
   }
+  .button {
+  align-content: center;
+  margin: 14px;
+  
+  margin: 9px;
+  }
 
+  .vertical-center {
+    position: absolute;
+    margin: 2px;
+    margin-right: 1px;
+  }
   /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
   @media screen and (max-width: 600px) {
     .col-25, .col-75, :no-button{
@@ -91,6 +102,10 @@ label {
     margin: 0;
     position: absolute;
     top: 50%;
+    
+    margin: 2px;
+    margin-right: 1px;
+
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
   }

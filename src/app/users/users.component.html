@@ -114,8 +114,8 @@
         </div>
         <input type="hidden" [(ngModel)]="user.status" formControlName="status" />
 
-        <div class="vertical-center">
-            <button type="button" class="hc btn btn-primary">Register New User</button>
+        <div class="vertical-center btn btn-secondary" >
+            <button>Register New User</button>
         </div>
 
     </form>
@@ -124,12 +124,19 @@
 
 
 <div class="container">
+<div>
     <div>
-        <input type="text" placeholder="Enter Keyword for filter" [(ngModel)]="searchedKeyword">
-        <button (click)="getSortedDob()">Sort BY DOB</button>
-        <button (click)="getSortedDoj()">Sort BY DOJ</button>
-
+        <label>Search Text: </label>
+        <input type="text" class="button" placeholder="Enter Keyword for filter" [(ngModel)]="searchedKeyword">
     </div>
+    <div>
+        <button class="button btn btn-info" (click)="getSortedDob()">Sort BY DOB</button>
+        <button class="button btn btn-warning" (click)="getSortedDoj()">Sort BY DOJ</button>
+    </div>
+       
+     </div>  
+
+    
     <table border="1">
 
         <tr>

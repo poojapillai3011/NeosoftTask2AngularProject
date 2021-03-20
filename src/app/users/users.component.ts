@@ -64,7 +64,7 @@ export class UsersComponent implements OnInit {
 
             .subscribe((response) => {
                 console.log(response);
-                // this.reset();
+                //this.reset();
                 this.getUsers();
             }, (error) => {
                 console.log(error);
